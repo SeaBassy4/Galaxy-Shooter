@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://dsek7j1jj8p31"]
+
+[ext_resource type="Texture2D" uid="uid://prcohs60ob3h" path="res://assets/ship.png" id="1_lyjrp"]
+[ext_resource type="Script" uid="uid://3oyie14qm7qf" path="res://components/move_component.gd" id="2_y3mk2"]
+[ext_resource type="Script" uid="uid://bpaeljngx72w7" path="res://components/move_input_component.gd" id="3_snm6p"]
+[ext_resource type="Resource" uid="uid://c4yd81eyw04ua" path="res://player_ship/ship_move_stats.tres" id="4_0n25c"]
+[ext_resource type="Script" uid="uid://bn0tylqk2e43f" path="res://components/position_clamp_component.gd" id="5_6u6rn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3mk2"]
+atlas = ExtResource("1_lyjrp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snm6p"]
+atlas = ExtResource("1_lyjrp")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0n25c"]
+atlas = ExtResource("1_lyjrp")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6u6rn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3mk2")
+}],
+"loop": true,
+"name": &"bank_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snm6p")
+}],
+"loop": true,
+"name": &"bank_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0n25c")
+}],
+"loop": true,
+"name": &"center",
+"speed": 5.0
+}]
+
+[node name="Ship" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6u6rn")
+animation = &"center"
+autoplay = "center"
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("2_y3mk2")
+velocity = Vector2(0, -50)
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://3oyie14qm7qf"
+
+[node name="MoveInputComponent" type="Node" parent="." node_paths=PackedStringArray("move_component")]
+script = ExtResource("3_snm6p")
+move_stats = ExtResource("4_0n25c")
+move_component = NodePath("../MoveComponent")
+metadata/_custom_type_script = "uid://bpaeljngx72w7"
+
+[node name="PositionClampComponent" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("5_6u6rn")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://bn0tylqk2e43f"
