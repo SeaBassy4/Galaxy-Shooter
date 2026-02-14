@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgj53se0wm7v3"]
+[gd_scene load_steps=10 format=3 uid="uid://bgj53se0wm7v3"]
 
 [ext_resource type="Script" uid="uid://cph5huprph80d" path="res://enemies/enemy.gd" id="1_3t1x0"]
 [ext_resource type="Script" uid="uid://cvbrl1ivpedsk" path="res://components/stats_component.gd" id="1_7frlh"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://ctd5mrsxtpmlh" path="res://components/scale_component.gd" id="3_07tka"]
 [ext_resource type="Script" uid="uid://c8naywdyv727a" path="res://components/flash_component.gd" id="4_3t1x0"]
 [ext_resource type="Script" uid="uid://btml3tphowu0s" path="res://components/shake_component.gd" id="5_epsnb"]
+[ext_resource type="Script" uid="uid://cbf4dxlvd0e45" path="res://components/hurtbox_component.gd" id="7_4w5fm"]
+[ext_resource type="Script" uid="uid://difiindk0cd8i" path="res://components/hitbox_component.gd" id="8_uba7a"]
+[ext_resource type="Script" uid="uid://drux57h0pss38" path="res://components/hurt_component.gd" id="9_uba7a"]
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_3t1x0")
@@ -37,3 +40,21 @@ metadata/_custom_type_script = "uid://c8naywdyv727a"
 script = ExtResource("5_epsnb")
 node = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://btml3tphowu0s"
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+position = Vector2(-3, -4)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("7_4w5fm")
+metadata/_custom_type_script = "uid://cbf4dxlvd0e45"
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+script = ExtResource("8_uba7a")
+metadata/_custom_type_script = "uid://difiindk0cd8i"
+
+[node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
+script = ExtResource("9_uba7a")
+stats_component = NodePath("../StatsComponent")
+hurtbox_component = NodePath("../HurtboxComponent")
+metadata/_custom_type_script = "uid://drux57h0pss38"

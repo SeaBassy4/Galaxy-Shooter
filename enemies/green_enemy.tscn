@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ummsbadbn0w1"]
+[gd_scene load_steps=9 format=3 uid="uid://ummsbadbn0w1"]
 
 [ext_resource type="PackedScene" uid="uid://bgj53se0wm7v3" path="res://enemies/enemy.tscn" id="1_xixw3"]
 [ext_resource type="Texture2D" uid="uid://deae76jh0u7j7" path="res://assets/green_enemy.png" id="2_b0nf3"]
@@ -32,6 +32,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_b0nf3"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6rcqd"]
+radius = 6.0
+
 [node name="GreenEnemy" instance=ExtResource("1_xixw3")]
 
 [node name="AnimatedSprite2D" parent="." index="0"]
@@ -48,3 +54,9 @@ velocity = Vector2(0, 40)
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="3"]
 rect = Rect2(-8, -8, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+shape = SubResource("CircleShape2D_b0nf3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+shape = SubResource("CircleShape2D_6rcqd")

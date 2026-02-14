@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs10h8snsav5e"]
+[gd_scene load_steps=8 format=3 uid="uid://bs10h8snsav5e"]
 
 [ext_resource type="Script" uid="uid://ca2qyiox1f5lg" path="res://projectiles/laser.gd" id="1_8q7g5"]
 [ext_resource type="Texture2D" uid="uid://8kxajq3ogjnr" path="res://assets/laser_small.png" id="1_rl7n7"]
 [ext_resource type="Script" uid="uid://3oyie14qm7qf" path="res://components/move_component.gd" id="2_8q7g5"]
 [ext_resource type="Script" uid="uid://ctd5mrsxtpmlh" path="res://components/scale_component.gd" id="4_i72jr"]
 [ext_resource type="Script" uid="uid://c8naywdyv727a" path="res://components/flash_component.gd" id="5_1q6dw"]
+[ext_resource type="Script" uid="uid://difiindk0cd8i" path="res://components/hitbox_component.gd" id="6_v4jka"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ah33s"]
+size = Vector2(4, 8)
 
 [node name="Laser" type="Node2D"]
 script = ExtResource("1_8q7g5")
@@ -33,3 +37,13 @@ script = ExtResource("5_1q6dw")
 sprite = NodePath("../Sprite2D")
 flash_duration = 0.1
 metadata/_custom_type_script = "uid://c8naywdyv727a"
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("6_v4jka")
+metadata/_custom_type_script = "uid://difiindk0cd8i"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ah33s")
