@@ -12,10 +12,10 @@ position = Vector2(80, 216)
 [node name="SpaceBackground" parent="." instance=ExtResource("2_fj7yv")]
 
 [node name="GreenEnemy" parent="." instance=ExtResource("3_tlwt5")]
-position = Vector2(32, 48)
+position = Vector2(32, 24)
 
 [node name="GreenEnemy2" parent="." instance=ExtResource("3_tlwt5")]
-position = Vector2(120, 40)
+position = Vector2(134, 12)
 
 [node name="GreenEnemy3" parent="." instance=ExtResource("3_tlwt5")]
-position = Vector2(48, 104)
+position = Vector2(80, 16)
