@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Galaxy-Shooter"
-run/main_scene="uid://dbsqw7mc4glka"
+run/main_scene="uid://dvblr1sd58x25"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
