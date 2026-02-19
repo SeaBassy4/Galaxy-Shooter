@@ -12,6 +12,7 @@ extends Node2D
 @onready var score_component: ScoreComponent = $ScoreComponent as ScoreComponent
 
 
+
 func _ready() -> void:
 	stats_component.no_health.connect(func():
 		score_component.adjust_score()
