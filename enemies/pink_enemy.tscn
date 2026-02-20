@@ -1,10 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://j3opldr76x5q"]
+[gd_scene load_steps=18 format=3 uid="uid://j3opldr76x5q"]
 
 [ext_resource type="PackedScene" uid="uid://bgj53se0wm7v3" path="res://enemies/enemy.tscn" id="1_m7bk0"]
+[ext_resource type="Script" uid="uid://bji1f5fn2px47" path="res://enemies/pink_enemy.gd" id="2_3uis6"]
 [ext_resource type="Texture2D" uid="uid://dqpct2var75f3" path="res://assets/pink_enemy.png" id="2_psv4m"]
 [ext_resource type="Script" uid="uid://bbfk0ik7fmuqs" path="res://components/timed_state_componoent.gd" id="3_mik3f"]
+[ext_resource type="Script" uid="uid://b6k7hvnp8ju38" path="res://components/state_component.gd" id="3_uw4rh"]
 [ext_resource type="Script" uid="uid://3oyie14qm7qf" path="res://components/move_component.gd" id="4_mik3f"]
 [ext_resource type="Script" uid="uid://d3nlaswok2y06" path="res://components/border_bounce_component.gd" id="5_mik3f"]
+[ext_resource type="Script" uid="uid://bneo6jj2rb37" path="res://components/spawner_component.gd" id="7_0tkce"]
+[ext_resource type="PackedScene" uid="uid://t622w8p0wh0b" path="res://projectiles/pink_enemy_projectile.tscn" id="8_3uis6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0kney"]
 atlas = ExtResource("2_psv4m")
@@ -56,24 +60,27 @@ radius = 8.0
 radius = 6.0
 
 [node name="PinkEnemy" instance=ExtResource("1_m7bk0")]
-script = null
+script = ExtResource("2_3uis6")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_0tkce")
 autoplay = "default"
-frame_progress = 0.63018507
+frame_progress = 0.70104355
 
 [node name="StatsComponent" parent="." index="1"]
 health = 6
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="3"]
-rect = Rect2(-7, -7, 14, 13)
+position = Vector2(3, -2)
+rect = Rect2(-7, -2, 8, 8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+visible = false
 position = Vector2(3, 4)
 shape = SubResource("CircleShape2D_3uis6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+visible = false
 shape = SubResource("CircleShape2D_idvas")
 debug_color = Color(0.7996378, 0, 0.21207258, 0.41960785)
 
@@ -118,3 +125,14 @@ unique_name_in_owner = true
 script = ExtResource("3_mik3f")
 duration = 3.0
 metadata/_custom_type_script = "uid://bbfk0ik7fmuqs"
+
+[node name="FireState" type="Node" parent="States" index="3"]
+unique_name_in_owner = true
+script = ExtResource("3_uw4rh")
+metadata/_custom_type_script = "uid://b6k7hvnp8ju38"
+
+[node name="ProjectileSpawnerComponent" type="Node2D" parent="States/FireState" index="0"]
+unique_name_in_owner = true
+script = ExtResource("7_0tkce")
+scene = ExtResource("8_3uis6")
+metadata/_custom_type_script = "uid://bneo6jj2rb37"
