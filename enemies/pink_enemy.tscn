@@ -65,10 +65,10 @@ script = ExtResource("2_3uis6")
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_0tkce")
 autoplay = "default"
-frame_progress = 0.70104355
+frame_progress = 0.74658066
 
 [node name="StatsComponent" parent="." index="1"]
-health = 6
+health = 3
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="3"]
 position = Vector2(3, -2)
