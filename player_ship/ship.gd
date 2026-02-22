@@ -8,6 +8,7 @@ extends Node2D
 @onready var move_component: MoveComponent = $MoveComponent as MoveComponent
 @onready var flame_animated_sprite_2d2: AnimatedSprite2D = $Anchor/FlameAnimatedSprite2D2
 @onready var variable_pitch_audio_stream_player: VariablePitchAudioStreamPlayer = $VariablePitchAudioStreamPlayer
+@onready var stats_component: StatsComponent = $StatsComponent
 
 
 func _ready() -> void:
